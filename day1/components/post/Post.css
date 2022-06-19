@@ -1,0 +1,33 @@
+.post {
+    width: 40vw;
+    height: fit-content;
+    border: 1px solid lightgray;
+    margin-bottom: 8vh;
+    position: relative;
+    left: 20vw;
+}
+
+.post-img-container {
+    text-align: center;
+}
+
+.post-img {
+    width: 40vw;
+    object-fit: contain;
+    position: relative;
+}
+
+.post-text {
+    font-weight: 400;
+    padding: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+
+.post-avatar {
+    margin-right: 1vw;
+}
