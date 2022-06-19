@@ -1,0 +1,8 @@
+.sideProfile {
+    height: 75vh;
+    width: 35vw;
+    background-color: rgb(155, 255, 78);
+    float: right;
+    position: relative;
+    right: 10vw;
+}
