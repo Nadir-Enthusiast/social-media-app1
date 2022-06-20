@@ -1,0 +1,14 @@
+.header {
+    width: 100vw;
+    height: 10vh;
+    background: white;
+    border-bottom: 1px solid rgb(105, 105, 105);
+}
+
+.logo-container {
+    padding: 2vh;
+}
+
+.logo-text {
+    max-height: 6vh;
+}
