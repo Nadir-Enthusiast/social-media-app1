@@ -1,15 +1,14 @@
-import "./Post.css"
-import React, { useEffect, useState } from 'react'
-import Avatar from "@material-ui/core/Avatar";
-import {db} from "./firebase";
+import "./Comments.css"
+import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { IconButton } from "@material-ui/core";
+import {db} from "./firebase"
 import firebase from "firebase";
-import { Link } from "react-router-dom";
 
-function Post({postId, user, username, caption, profilePic, image}) {
-
+function Comments({postId, user, username, caption}) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
-
 
   useEffect(() => {
     let unsubscribe;
@@ -43,44 +42,18 @@ function Post({postId, user, username, caption, profilePic, image}) {
   }
 
   return (
-    <div className="post">
-        <div className="post-header">
-            <Avatar
-                className="post-avatar" 
-                alt="ok"
-                src={profilePic}
-            />
-            <h2>{username}</h2>
+    <div className="comments">
+        <div className="title">
+            <Link to="/feed">
+                <IconButton>
+                    <ArrowBackIcon />
+                </IconButton>
+            </Link>
+            <h1>Comment Section</h1>
         </div>
-        <div className="post-img-container">
-            <img
-                className="post-img"
-                src={image}
-                alt="no"
-            />
+        <div className="initial-post">
+            <h1>{username} :</h1><p>&nbsp;&nbsp;{caption}</p>
         </div>
-        <h4 className="post-text">
-            <strong>{username}</strong> {caption}
-        </h4>
-        <div className="post-comments">
-            {comments.slice(0,2).map((comment) => (
-                <p>
-                    <strong>{comment.username}</strong> {comment.text}
-                </p>
-            ))
-            }
-            <Link to='/feed/comments'><p>See all comments</p></Link>
-        </div>
-        {/*
-        <div className="post-comments">
-            {comments.map((comment) => (
-                <p>
-                    <strong>{comment.username}</strong> {comment.text}
-                </p>
-            ))
-            }
-        </div>
-        
         {user && (
         <form className="post-comment-container">
             <input
@@ -99,9 +72,17 @@ function Post({postId, user, username, caption, profilePic, image}) {
                 Post
             </button>
         </form>)}
-        */}
+        <div className="comments-interface">
+            {comments.map((comment) => (
+                <div>
+                    <h2>{comment.username}</h2>
+                    <p>{comment.text}</p>
+                </div>
+            ))
+            }
+        </div>
     </div>
   )
 }
 
-export default Post
+export default Comments

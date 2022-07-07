@@ -1,0 +1,11 @@
+.post-upload {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 10px auto;
+    max-width: 300px;
+}
+
+.img-uploading {
+    width: 100%;
+}

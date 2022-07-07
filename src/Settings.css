@@ -1,0 +1,53 @@
+.settings {
+    width: 80vw;
+    height: fit-content; /* MUST BE CHANGED */
+    margin: 45px auto;
+    background: rgb(235, 235, 235);
+}
+
+.settings-header {
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.settings-header > h1 {
+    font-size: 52px;
+}
+
+.settings-icon {
+    position: relative;
+    top: 35px;
+    right: 10px;
+    transform-origin: top right;
+    transform: scale(2.2);
+}
+
+.dropdown-btn {
+    background: transparent;
+    border: none;
+    z-index: 1;
+}
+
+.dropdown-btn > h3 {
+    font-size: 28px;
+}
+
+.settings-option {
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.settings-option > a {
+    font-size: 18px;
+}
+
+#account,
+#customization,
+#help,
+#account {
+    height: 0;
+}

@@ -1,0 +1,10 @@
+.chats {
+    width: 75vw;
+    height: 60vh; /* MUST BE CHANGED */
+    margin: 25px auto;
+    background: rgb(235, 235, 235);
+}
+
+.chats > h1 {
+    text-align: center;
+}

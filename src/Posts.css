@@ -1,0 +1,21 @@
+.posts {
+    width: 100vw;
+    justify-content: center;
+}
+
+.post-login {
+    text-align: center;
+    height: 100px;
+    word-wrap: normal;
+}
+
+.post-upload {
+    height: 250px;
+}
+
+.post-login > h3,
+.post-upload > h3 {
+    position: relative;
+    top: 35px;
+    font-size: 32px;
+}

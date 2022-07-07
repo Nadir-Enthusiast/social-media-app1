@@ -1,0 +1,43 @@
+.profile {
+    width: 70vw;
+    height: 70vh;
+    margin-top: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(206, 206, 206);
+}
+
+.profile-avatar {
+    width: 25vw;
+    height: 40vh;
+    position: relative;
+    float: left;
+}
+
+.profile-avatar > img {
+    width: 100%;
+    height: fit-content;
+}
+
+.profile-text {
+    margin-left: 25px;
+    width: 40vw;
+    height: 40vh;
+    position: relative;
+    float: right;
+}
+
+.profile-text > p {
+    font-size: 14px;
+    margin-top: 45px;
+}
+
+.profile-text > h1 {
+    font-size: 34px;
+    margin-top: 0;
+}
+
+.profile-text > h3 {
+    font-size: 28px;
+    margin-top: 0;
+}
