@@ -1,0 +1,30 @@
+.welcome {
+    width: 50vw;
+    height: 40vh;
+    margin-top: 20vh;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(245, 245, 245);
+    text-align: center;
+}
+
+.welcome > .options > .welcome-btn {
+    padding: 2px;
+    margin: 5px;
+    height: 60px;
+    width: 160px;
+    background: linear-gradient(to top right, #ffe600, #a6ff00, #00ffea);
+}
+
+.welcome-btn > a:link {
+    text-decoration: none;
+    color: black;
+}
+
+.welcome-btn > a:visited {
+    color: black;
+}
+
+.login-link {
+    font-size: 20px;
+}

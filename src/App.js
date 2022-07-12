@@ -6,8 +6,13 @@ import Header from './Header';
 import Search from "./Search";
 import Chats from "./Chats";
 import Settings from "./Settings";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom"
+import {BrowserRouter as Router, Route, Switch, useParams} from "react-router-dom"
 import Comments from './Comments';
+/*
+import Welcome from './Welcome';
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+ */
 import {db, auth} from "./firebase"
 
 function App() {
@@ -57,24 +62,14 @@ function App() {
           </Route>
           <Route path="/profile">
             <Header />
-            <Profile />
+            <Profile user={user} />
           </Route>
-          <Route path='/feed/comments'>
+          <Route path='/feed/comments/:cid'>
             <Header />
-            {
-              posts.map(({id, post}) => (
-                <Comments
-                  key={id}
-                  postId={id}
-                  user={user}
-                  username={post.username}
-                  caption={post.caption}
-                />
-              ))
-            }
+            <CommentsManage user={user} posts={posts} />
           </Route>
           {/* default feed route */}
-          <Route path='/feed'>
+          <Route path='/'>
             <Header />
             <Posts 
               className="posts-mainPage"
@@ -82,10 +77,41 @@ function App() {
               posts={posts} 
             />
           </Route>
+          {/* will be available in updates */}
+          {/*
+          <Route path='/sign-up'>
+            <SignUp />
+          </Route>
+          <Route path='/sign-in'>
+            <SignIn />
+          </Route>
+          <Route path='/'>
+            <Welcome />
+          </Route>
+          */}
         </Switch>
       </div>
     </Router>
   );
+}
+
+function CommentsManage({user, posts}) {
+  let { cid } = useParams();
+
+  return(
+    (
+      posts.map(({id, post}) => (
+        (id===cid.slice(1)? 
+        <Comments
+          key={id}
+          postId={id}
+          user={user}
+          username={post.username}
+          caption={post.caption}
+        /> : '')
+      ))
+  )
+    )
 }
 
 export default App;

@@ -17,35 +17,17 @@
 
 .post-text {
     font-weight: 400;
-    padding: 10px;
+    padding: 10px 10px;
+    margin: 0;
+    border-bottom: 1px solid rgb(205, 205, 205);
 }
 
 .post-header {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 5px 20px;
 }
 
 .post-avatar {
     margin-right: 1vw;
-}
-
-.post-comments {
-    padding: 10px;
-}
-
-.post-comment-container {
-    margin-top: 10px;
-    display: flex;
-}
-
-.type-comment {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    border-top: 1px solid rgb(151, 151, 151);
-}
-
-.comment-btn {
-    flex: 0;
 }

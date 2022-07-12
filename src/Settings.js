@@ -66,7 +66,7 @@ function Settings() {
         </div>
         {/* footer */}
         <div className="settings-footer">
-          <h1>footer</h1>
+          <p>Thanks for attention. Doing best to improve services</p>
         </div>
     </div>
   )

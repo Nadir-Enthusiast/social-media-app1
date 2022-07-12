@@ -38,7 +38,7 @@
     background: rgb(239, 239, 239);
 }
 
-.icon-btn {
+.navbar > .icon-btn {
     height: fit-content;
     top: 16px;
     left: 15px;

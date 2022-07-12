@@ -1,25 +1,30 @@
 import "./Profile.css"
-import React from 'react'
+import React, { useState } from 'react'
 
-function Profile() {
+function Profile({user}) {
   return (
-    <div className="profile">
+    <>
+      {user?.email !== undefined ? 
+      <div className="profile">
         <div className="profile-avatar">
           <img 
             src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541" 
             alt="" />
         </div>
         <div className="profile-text">
-          <p>Full Name: </p>
-          <h1>First Middle Sur- Names</h1>
-          <p>Username: </p>
-          <h3>Any</h3>
+          <p>Username </p>
+          <h1>{user.displayName}</h1>
+          <p>E-mail </p>
+          <h3>{user.email}</h3>
           <p>Gender: </p>
-          <h3>Demo</h3>
+          <h3>Not specified</h3>
           <p>Age: </p>
-          <h3>Random</h3>
+          <h3>Not specified</h3>
         </div>
-    </div>
+      </div>
+      : <h1>Using as a guest</h1>
+    }
+    </>
   )
 }
 

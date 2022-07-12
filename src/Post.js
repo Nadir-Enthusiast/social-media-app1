@@ -69,39 +69,10 @@ function Post({postId, user, username, caption, profilePic, image}) {
                 </p>
             ))
             }
-            <Link to='/feed/comments'><p>See all comments</p></Link>
+            <Link to={`/feed/comments/:${postId}`}><p>See all comments</p></Link>
         </div>
-        {/*
-        <div className="post-comments">
-            {comments.map((comment) => (
-                <p>
-                    <strong>{comment.username}</strong> {comment.text}
-                </p>
-            ))
-            }
-        </div>
-        
-        {user && (
-        <form className="post-comment-container">
-            <input
-                className="type-comment"
-                type="text"
-                placeholder="Add a comment..."
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-            />
-            <button
-                className="comment-btn"
-                disabled={!comment}
-                type="submit"
-                onClick={postComment}
-            >
-                Post
-            </button>
-        </form>)}
-        */}
     </div>
   )
 }
 
-export default Post
+export default Post;

@@ -52,6 +52,14 @@ function Header() {
     }
   }, [user, password])
 
+  useEffect(() => {
+    if(user && username) {
+      user.updateProfile({
+        displayName: username
+      })
+    }
+  },[user, username])
+
   const signUp = (event) => {
     event.preventDefault();
 

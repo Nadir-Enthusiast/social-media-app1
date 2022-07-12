@@ -45,9 +45,11 @@ function Comments({postId, user, username, caption}) {
     <div className="comments">
         <div className="title">
             <Link to="/feed">
-                <IconButton>
-                    <ArrowBackIcon />
-                </IconButton>
+                <div className="title-btn">
+                    <IconButton className="arrow">
+                        <ArrowBackIcon />
+                    </IconButton>
+                </div>
             </Link>
             <h1>Comment Section</h1>
         </div>
@@ -74,7 +76,7 @@ function Comments({postId, user, username, caption}) {
         </form>)}
         <div className="comments-interface">
             {comments.map((comment) => (
-                <div>
+                <div className="comment">
                     <h2>{comment.username}</h2>
                     <p>{comment.text}</p>
                 </div>

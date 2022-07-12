@@ -1,10 +1,11 @@
 import firebase from 'firebase';
+import 'firebase/firestore'
 
 const firebaseApp = firebase.initializeApp({
-  // firebase config
+  //config
 });
 
-const db = firebaseApp.firestore();
+const db = firebase.firestore();
 const auth = firebase.auth();
 const storage = firebase.storage();
 

@@ -4,11 +4,63 @@
     margin-right: auto;
 }
 
+.comments > .title {
+    position: relative;
+    top: 15px;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 25px;
+}
+
+.title-btn > .arrow {
+    display: inline-block;
+    transform: scale(2);
+}
+
+.comments > .title > h1 {
+    margin-left: 25px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .comments > .initial-post {
     display: flex;
     flex-direction: row;
+    border: 1px solid #000000;
 }
 
 .comments > .initial-post > p {
     font-size: 26px;
+}
+
+.post-comment-container,
+.comments-interface {
+    margin-left: auto;
+    margin-right: auto;
+    width: 40vw;
+}
+
+.post-comment-container {
+    margin-top: 10px;
+    display: flex;
+}
+
+.type-comment {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid rgb(151, 151, 151);
+}
+
+.comment-btn {
+    flex: 0;
+}
+
+.comments-interface > .comment > h2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.comments-interface > .comment > p {
+    margin-top: 0;
 }
