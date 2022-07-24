@@ -10,6 +10,7 @@
 
 .open-nav-btn {
     font-size: 48px;
+    font-size-adjust: 0.75;
     position: relative;
     float: left;
     width: 5vw;
@@ -31,19 +32,78 @@
 .logo-container {
     display: flex;
     flex-direction: row;
-    padding: 2vh;
 }
 
 .logo-container > h3 {
     padding-left: 15px;
-}
-
-.logo-text {
-    max-height: 6vh;
+    margin: 0;
 }
 
 .login-container {
-    right: 0;
-    height: 50px;
-    padding: 30px;
+    padding-top: 5vh;
+}
+
+@media screen and (max-width: 767px) {
+    .logo-container {
+        height: 25px;
+        padding-top: 5vh;
+    }
+
+    .logo-text {
+        height: 8vh;
+    }
+
+    .login-container {
+        padding-top: 5vh;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .logo-container {
+        height: 35px;
+        padding-top: 5vh;
+    }
+
+    .logo-text {
+        height: 4vh;
+    }
+
+    .login-container {
+        padding-top: 4vh;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1899px) {
+    .logo-text {
+        height: 3vh;
+    }
+
+    .logo-container {
+        height: fit-content;
+        padding-top: 3vh;
+    }
+
+    .login-container {
+        padding-top: 3vh;
+    }
+    
+}
+
+@media screen and (min-width: 1900px) {
+    .logo-container {
+        height: 50px;
+        padding-top: 10px;
+    }
+
+    .logo-text {
+        height: 2vh;
+    }
+
+    .logo-container > h3 {
+        font-size: 24px;
+    }
+
+    .login-container {
+        padding-top: 2.5vh;
+    }
 }

@@ -1,6 +1,8 @@
 .posts {
-    width: 100vw;
+    width: 90vw;
     justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .post-login {
@@ -18,4 +20,28 @@
     position: relative;
     top: 35px;
     font-size: 32px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .posts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1899px) {
+    .posts {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .posts {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
 }

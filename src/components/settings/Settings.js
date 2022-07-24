@@ -5,9 +5,15 @@ import BuildIcon from '@material-ui/icons/Build';
 function Settings() {
   const dropdownLaunch = (event, option) => {
     if(document.getElementById(option).style.height === "fit-content") {
-      return (document.getElementById(option).style.height = "0")
+      return (document
+        .getElementById(option)
+        .style
+        .height = "0")
     } else {
-      return (document.getElementById(option).style.height = "fit-content")
+      return (document
+        .getElementById(option)
+        .style
+        .height = "fit-content")
     }
   }
 

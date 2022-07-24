@@ -1,5 +1,9 @@
+:root {
+    --base-width: 30vw;
+}
+
 .post {
-    width: 30vw;
+    width: var(--base-width);
     height: fit-content;
     border: 1px solid lightgray;
     margin: 4vh auto;
@@ -10,7 +14,7 @@
 }
 
 .post-img {
-    width: 30vw;
+    width: var(--base-width);
     object-fit: contain;
     position: relative;
 }
@@ -30,4 +34,28 @@
 
 .post-avatar {
     margin-right: 1vw;
+}
+
+@media screen and (max-width: 768px) {
+    .post {
+        --base-width: 70vw;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .post {
+        --base-width: 40vw;
+    }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1899px) {
+    .post {
+        --base-width: 27vw;
+    }
+}
+
+@media screen and (min-width: 1900px) {
+    .post {
+        --base-width: 16vw;
+    }
 }
