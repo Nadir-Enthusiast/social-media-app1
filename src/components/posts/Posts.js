@@ -1,8 +1,8 @@
 import "./Posts.css";
 import React from "react";
 import "firebase/auth"
-import Post from './Post';
-import PostUploader from "./PostUploader";
+import Post from '../post/Post';
+import PostUploader from "../postupload/PostUploader";
 
 function Posts({user, posts}) {
   return (

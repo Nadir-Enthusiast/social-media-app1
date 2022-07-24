@@ -1,9 +1,9 @@
 import "./Header.css"
 import React, {useState, useEffect} from 'react'
-import {auth} from "./firebase";
+import {auth} from "../../firebase";
 import { Button, Input, makeStyles } from '@material-ui/core';
 import Modal from "@material-ui/core/Modal";
-import Navbar from "./Navbar";
+import Navbar from "../navbar/Navbar";
 
 function getModalStyle() {
   const top = 50;

@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { IconButton } from "@material-ui/core";
-import {db} from "./firebase"
+import {db} from "../../firebase"
 import firebase from "firebase";
 
 function Comments({postId, user, username, caption}) {

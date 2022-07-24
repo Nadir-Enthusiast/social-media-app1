@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core'
 import firebase from 'firebase';
 import React, { useState } from 'react'
-import {db, storage} from "./firebase"
+import {db, storage} from "../../firebase"
 import "./PostUploader.css";
 
 function PostUploader({username}) {

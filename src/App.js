@@ -1,13 +1,13 @@
 import './App.css';
 import React,{useState, useEffect} from "react";
-import Profile from "./Profile";
-import Posts from "./Posts";
-import Header from './Header';
-import Search from "./Search";
-import Chats from "./Chats";
-import Settings from "./Settings";
+import Profile from "./components/profile/Profile";
+import Posts from "./components/posts/Posts";
+import Header from './components/header/Header';
+import Search from "./components/search/Search";
+import Chats from "./components/chats/Chats";
+import Settings from "./components/settings/Settings";
 import {BrowserRouter as Router, Route, Switch, useParams} from "react-router-dom"
-import Comments from './Comments';
+import Comments from './components/comments/Comments';
 /*
 import Welcome from './Welcome';
 import SignIn from "./SignIn";
@@ -110,8 +110,8 @@ function CommentsManage({user, posts}) {
           caption={post.caption}
         /> : '')
       ))
-  )
     )
+  )
 }
 
 export default App;
