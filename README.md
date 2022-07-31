@@ -1,5 +1,7 @@
 # Social Media website
 
+## IMPORTANT NOTICE: This project is currently being refactored
+
 ### Log in , sign up , upload posts, comment.
 
 ## Available Scripts
