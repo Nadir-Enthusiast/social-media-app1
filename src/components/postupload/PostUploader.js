@@ -1,15 +1,15 @@
-import { Button } from '@material-ui/core'
 import firebase from 'firebase';
 import React, { useState } from 'react'
 import {db, storage} from "../../firebase"
 import "./PostUploader.css";
 
-function PostUploader({username}) {
+function PostUploader() {
+  const [username, setUsername] = useState('');
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
   const [caption, setCaption] = useState('');
 
-  const handleChange = (e) => {
+  const handleImage = (e) => {
     if(e.target.files[0]) {
         setImage(e.target.files[0])
     }
@@ -53,15 +53,42 @@ function PostUploader({username}) {
 
   return (
     <div className='post-upload'>
-      <progress className='img-uploading' value={progress} max={100} />
-      <input type='text' 
-          placeholder='Enter a caption...' 
+      <form>
+        {/* USERNAME */}
+        <label htmlFor="username">Username</label>
+        <input 
+          type="text" 
+          id="username" 
+          onChange={event => setUsername(event.target.value)} 
+          placeholder='CoolUsername'   
+        />
+        <p>Enter the name that will be displayed on your post</p>
+
+        {/* CAPTION */}
+        <label htmlFor="caption">Caption</label>
+        <input 
+          id='caption'
+          type='text' 
+          placeholder='Some amazing caption!' 
           onChange={event => setCaption(event.target.value)}
-          value={caption}/>
-      <input type='file' onChange={handleChange} />
-      <Button onClick={handleUpload}>
-          Upload
-      </Button>
+          value={caption}
+        />
+        <p>Optional. Caption will be shown under the post</p>
+
+        {/* ACTUAL UPLOAD */}
+        <label htmlFor='picUpload'>Choose a picture to upload</label>
+        <progress className='img-uploading' value={progress} max={100} />
+        <input 
+          id='picUpload' 
+          type='file' 
+          onChange={handleImage} 
+        />
+        <p>Required. To upload a post you must choose a picture</p>
+
+        {/* SUBMIT */}
+        <button onClick={handleUpload}>Upload</button>
+
+      </form>
     </div>
   )
 }
