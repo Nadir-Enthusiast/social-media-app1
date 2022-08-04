@@ -5,23 +5,6 @@
     margin-right: auto;
 }
 
-.post-login {
-    text-align: center;
-    height: 100px;
-    word-wrap: normal;
-}
-
-.post-upload {
-    height: 250px;
-}
-
-.post-login > h3,
-.post-upload > h3 {
-    position: relative;
-    top: 35px;
-    font-size: 32px;
-}
-
 @media screen and (min-width: 768px) and (max-width: 1023px) {
     .posts {
         display: grid;

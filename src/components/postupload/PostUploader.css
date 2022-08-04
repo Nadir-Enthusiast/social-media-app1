@@ -3,7 +3,7 @@
     flex-direction: column;
     position: relative;
     margin: 10px auto;
-    max-width: 300px;
+    width: 300px;
 }
 
 .img-uploading {

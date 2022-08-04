@@ -5,6 +5,7 @@ import Header from './components/header/Header';
 import {BrowserRouter as Router, Route, Switch, useParams} from "react-router-dom"
 import Comments from './components/comments/Comments';
 import {db} from "./firebase"
+import PostUploader from './components/postupload/PostUploader';
 
 function App() {
   // defining posts
@@ -23,6 +24,10 @@ function App() {
     <Router>
       <div className="app">
         <Switch>
+          <Route path='/upload'>
+            <Header />
+            <PostUploader />
+          </Route>
           <Route path='/feed/comments/:cid'>
             <Header />
             <CommentsManage posts={posts} />
