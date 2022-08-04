@@ -1,25 +1,14 @@
 import './App.css';
 import React,{useState, useEffect} from "react";
-import Profile from "./components/profile/Profile";
 import Posts from "./components/posts/Posts";
 import Header from './components/header/Header';
-import Search from "./components/search/Search";
-import Chats from "./components/chats/Chats";
-import Settings from "./components/settings/Settings";
 import {BrowserRouter as Router, Route, Switch, useParams} from "react-router-dom"
 import Comments from './components/comments/Comments';
-/*
-import Welcome from './Welcome';
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
- */
-import {db, auth} from "./firebase"
+import {db} from "./firebase"
 
 function App() {
   // defining posts
   const [posts, setPosts] = useState([]);
-  // set user for all routes
-  const [user, setUser] = useState(null);
 
   useEffect(() => {
     db.collection('posts').orderBy("timestamp", "desc").onSnapshot(snapshot => {
@@ -30,72 +19,29 @@ function App() {
     })
   },[])
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if(authUser) {
-        setUser(authUser)
-      } else {
-        setUser(null)
-      }
-    })
-
-    return () => {
-      unsubscribe();
-    }
-  }, [user])
-
   return (
     <Router>
       <div className="app">
         <Switch>
-          <Route path="/search">
-            <Header />
-            <Search />
-          </Route>
-          <Route path="/chats">
-            <Header />
-            <Chats />
-          </Route>
-          <Route path="/settings">
-            <Header />
-            <Settings />
-          </Route>
-          <Route path="/profile">
-            <Header />
-            <Profile user={user} />
-          </Route>
           <Route path='/feed/comments/:cid'>
             <Header />
-            <CommentsManage user={user} posts={posts} />
+            <CommentsManage posts={posts} />
           </Route>
           {/* default feed route */}
           <Route path='/'>
             <Header />
             <Posts 
               className="posts-mainPage"
-              user={user}
               posts={posts} 
             />
           </Route>
-          {/* will be available in updates */}
-          {/*
-          <Route path='/sign-up'>
-            <SignUp />
-          </Route>
-          <Route path='/sign-in'>
-            <SignIn />
-          </Route>
-          <Route path='/'>
-            <Welcome />
-          </Route>
-          */}
         </Switch>
       </div>
     </Router>
   );
 }
 
-function CommentsManage({user, posts}) {
+function CommentsManage({posts}) {
   let { cid } = useParams();
 
   return(
@@ -105,7 +51,6 @@ function CommentsManage({user, posts}) {
         <Comments
           key={id}
           postId={id}
-          user={user}
           username={post.username}
           caption={post.caption}
         /> : '')

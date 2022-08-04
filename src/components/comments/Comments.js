@@ -6,7 +6,7 @@ import { IconButton } from "@material-ui/core";
 import {db} from "../../firebase"
 import firebase from "firebase";
 
-function Comments({postId, user, username, caption}) {
+function Comments({postId, username, caption}) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
@@ -33,7 +33,7 @@ function Comments({postId, user, username, caption}) {
 
     db.collection("posts").doc(postId).collection("comments").add({
         text: comment,
-        username: user.displayName,
+        username: username,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     })
 
@@ -56,7 +56,6 @@ function Comments({postId, user, username, caption}) {
         <div className="initial-post">
             <h1>{username} :</h1><p>&nbsp;&nbsp;{caption}</p>
         </div>
-        {user && (
         <form className="post-comment-container">
             <input
                 className="type-comment"
@@ -73,7 +72,7 @@ function Comments({postId, user, username, caption}) {
             >
                 Post
             </button>
-        </form>)}
+        </form>
         <div className="comments-interface">
             {comments.map((comment) => (
                 <div className="comment">

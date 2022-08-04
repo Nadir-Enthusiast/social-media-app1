@@ -1,4 +1,3 @@
-import "./Post.css"
 import React, { useEffect, useState } from 'react'
 import Avatar from "@material-ui/core/Avatar";
 import {db} from "../../firebase";
@@ -6,6 +5,8 @@ import firebase from "firebase";
 import { Link } from "react-router-dom";
 
 function Post({postId, user, username, caption, profilePic, image}) {
+
+  console.log(postId, user, username, caption, profilePic, image)
 
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
