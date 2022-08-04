@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 
 function Post({postId, user, username, caption, profilePic, image}) {
 
-  console.log(postId, user, username, caption, profilePic, image)
-
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
