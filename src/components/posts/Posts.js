@@ -3,10 +3,9 @@ import "../post/Post.css"
 import React from "react";
 import Post from '../post/Post';
 
-function Posts({posts}) {
+function Posts({user, posts}) {
   return (
-    <div>
-      <div className="posts">
+    <div className="posts">
         {
           posts.map(({id, post}) => (
             <Post
@@ -20,7 +19,6 @@ function Posts({posts}) {
           ))
         }
       </div>
-    </div>
   )
 }
 

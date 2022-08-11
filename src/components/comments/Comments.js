@@ -1,28 +1,23 @@
 import "./Comments.css"
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { IconButton } from "@material-ui/core";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { IconButton } from '@mui/material';
 import {db} from "../../firebase"
-import firebase from "firebase";
+import { updateDoc, serverTimestamp, query, collection, orderBy, onSnapshot, limit } from "firebase/firestore";
 
-function Comments({postId, username, caption}) {
+function Comments({postId, user, username, caption}) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState('');
 
   useEffect(() => {
     let unsubscribe;
+    const q = query(collection(db, `posts/${postId}/comments`,), orderBy("timestamp", "desc"), limit(1000))
     if (postId) {
-        unsubscribe = db
-            .collection("posts")
-            .doc(postId)
-            .collection("comments")
-            .orderBy("timestamp", "desc")
-            .onSnapshot((snapshot) => {
-                setComments(snapshot.docs.map((doc) => doc.data()));
-            });
+        unsubscribe = onSnapshot(q, (snapshot) => {
+            setComments(snapshot.docs.map((doc) => doc.data()));
+        });
     }
-
     return () => {
         unsubscribe();
     };
@@ -31,12 +26,11 @@ function Comments({postId, username, caption}) {
   const postComment = (event) => {
     event.preventDefault();
 
-    db.collection("posts").doc(postId).collection("comments").add({
+    updateDoc((db, "posts", postId, "comments"), {
         text: comment,
-        username: username,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        username: user.displayName,
+        timestamp: serverTimestamp(),
     })
-
     setComment('');
 
   }
@@ -44,7 +38,7 @@ function Comments({postId, username, caption}) {
   return (
     <div className="comments">
         <div className="title">
-            <Link to="/feed">
+            <Link to="/">
                 <div className="title-btn">
                     <IconButton className="arrow">
                         <ArrowBackIcon />
@@ -56,6 +50,7 @@ function Comments({postId, username, caption}) {
         <div className="initial-post">
             <h1>{username} :</h1><p>&nbsp;&nbsp;{caption}</p>
         </div>
+        {user && (
         <form className="post-comment-container">
             <input
                 className="type-comment"
@@ -72,7 +67,7 @@ function Comments({postId, username, caption}) {
             >
                 Post
             </button>
-        </form>
+        </form>)}
         <div className="comments-interface">
             {comments.map((comment) => (
                 <div className="comment">
