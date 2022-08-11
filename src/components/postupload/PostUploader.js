@@ -1,9 +1,16 @@
-import firebase from 'firebase';
 import React, { useState } from 'react'
+import { useNavigate } from "react-router-dom";
 import {db, storage} from "../../firebase"
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import {ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
+import {collection, addDoc, serverTimestamp} from 'firebase/firestore';
 import "./PostUploader.css";
 
-function PostUploader() {
+function PostUploader(user) {
+
+  let navigate = useNavigate();
+
+  const auth = getAuth();
   const [username, setUsername] = useState('');
   const [image, setImage] = useState(null);
   const [progress, setProgress] = useState(0);
@@ -16,7 +23,22 @@ function PostUploader() {
   }
 
   const handleUpload = (e) => {
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    e.preventDefault()
+
+    signInWithEmailAndPassword(auth, 'test@gmail.com', 'test1pass')
+          .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log("AFTER SIGN IN:")
+            console.log(user)
+            // ...
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+    
+    const uploadTask = uploadBytesResumable(ref(storage, `images/${image.name}`), image);
 
     uploadTask.on(
       "state_changed",
@@ -25,31 +47,33 @@ function PostUploader() {
           (snapshot.bytesTransferred/snapshot.totalBytes)*100
         );
         setProgress(progress);
+        console.log("Progress test reached!OK")
       },
       (error) => {
         console.log(error);
         alert(error)
       },
       () => {
-        storage
-          .ref("images")
-          .child(image.name)
-          .getDownloadURL()
-          .then(url => {
-            db.collection("posts").add({
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          getDownloadURL(uploadTask.snapshot.ref)
+          .then((downloadURL) => {
+            addDoc(collection(db, "posts"), 
+            {
+              timestamp: serverTimestamp(),
               caption: caption,
-              imageUrl: url,
+              imageUrl: downloadURL,
               username: username
             })
 
             setProgress(0);
             setCaption("");
             setImage(null);
+            console.log("Post must have been uploaded!OK")
           })
       }
     )
+    navigate('/')
   }
+  
 
   return (
     <div className='post-upload'>
@@ -86,7 +110,7 @@ function PostUploader() {
         <p>Required. To upload a post you must choose a picture</p>
 
         {/* SUBMIT */}
-        <button onClick={handleUpload}>Upload</button>
+        <button onClick={(event) => handleUpload(event)}>Upload</button>
 
       </form>
     </div>
