@@ -1,7 +1,10 @@
-import firebase from 'firebase';
-import 'firebase/firestore'
+import { initializeApp } from "firebase/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+import { getStorage, ref } from "firebase/storage"
+import { getDatabase } from "firebase/database";
 
-const firebaseApp = firebase.initializeApp({
+const app = initializeApp({
   apiKey: `${process.env.REACT_APP_FIREBASE_API_KEY}`,
   authDomain: "social-media-app-by-nadir.firebaseapp.com",
   projectId: "social-media-app-by-nadir",
@@ -10,7 +13,9 @@ const firebaseApp = firebase.initializeApp({
   appId: `${process.env.REACT_APP_FIREBASE_APP_ID}`,
 });
 
-const db = firebase.firestore();
-const storage = firebase.storage();
+const db = getFirestore(app);
+const database = getDatabase(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
 
-export {db, storage};
+export {db, auth, storage, database};
