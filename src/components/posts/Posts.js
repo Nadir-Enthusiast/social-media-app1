@@ -1,7 +1,6 @@
 import "./Posts.css";
 import "../post/Post.css"
 import React from "react";
-import "firebase/auth"
 import Post from '../post/Post';
 
 function Posts({posts}) {
