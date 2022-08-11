@@ -2,17 +2,24 @@ import './App.css';
 import React,{useState, useEffect} from "react";
 import Posts from "./components/posts/Posts";
 import Header from './components/header/Header';
-import {BrowserRouter as Router, Route, Switch, useParams} from "react-router-dom"
+import {BrowserRouter as Router, Route, Routes, useParams} from "react-router-dom"
 import Comments from './components/comments/Comments';
 import {db} from "./firebase"
+import { collection, query, orderBy, limit, onSnapshot } from "firebase/firestore"; 
+import { getAuth } from "firebase/auth";
 import PostUploader from './components/postupload/PostUploader';
+import Edit from './components/edit/Edit';
 
 function App() {
+  const auth = getAuth();
   // defining posts
   const [posts, setPosts] = useState([]);
+  // set user for all routes
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    db.collection('posts').orderBy("timestamp", "desc").onSnapshot(snapshot => {
+    const q = query(collection(db, 'posts'), orderBy("timestamp", "desc"), limit(1000));
+    onSnapshot(q, snapshot => {
       setPosts(snapshot.docs.map(doc => ({
         id: doc.id,
         post: doc.data()
@@ -20,33 +27,65 @@ function App() {
     })
   },[])
 
+  // -------------------------------------Components-----------------------------------------
+
+  function HomePage() {
+    return(
+      <div>
+        <Header />
+        <Posts 
+          className="posts-mainPage"
+          user={user}
+          posts={posts} 
+        />
+      </div>
+    )
+  }
+
+  function CommentsPage() {
+    return(
+      <div>
+        <Header />
+        <CommentsManage user={user} posts={posts} />
+      </div>
+    )
+  }
+
+  function UploadPage() {
+    return(
+      <div>
+        <Header />
+        <PostUploader user={user} />
+      </div>
+    )
+  }
+
+  function EditPage() {
+    let {pid} = useParams()
+    return(
+      <div>
+        <Header />
+        <Edit targetId={pid} />
+      </div>
+    )
+  }
+  // ----------------------------------End of Components----------------------------------
+
   return (
     <Router>
       <div className="app">
-        <Switch>
-          <Route path='/upload'>
-            <Header />
-            <PostUploader />
-          </Route>
-          <Route path='/feed/comments/:cid'>
-            <Header />
-            <CommentsManage posts={posts} />
-          </Route>
-          {/* default feed route */}
-          <Route path='/'>
-            <Header />
-            <Posts 
-              className="posts-mainPage"
-              posts={posts} 
-            />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route element={<UploadPage />} path="/upload" />
+          <Route element={<CommentsPage />} path="/feed/comments/:cid" />
+          <Route element={<EditPage />} path="/post/:pid" />
+          <Route element={<HomePage />} path="/" />
+        </Routes>
       </div>
     </Router>
   );
 }
 
-function CommentsManage({posts}) {
+function CommentsManage({user, posts}) {
   let { cid } = useParams();
 
   return(
@@ -56,6 +95,7 @@ function CommentsManage({posts}) {
         <Comments
           key={id}
           postId={id}
+          user={user}
           username={post.username}
           caption={post.caption}
         /> : '')
