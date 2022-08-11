@@ -1,6 +1,6 @@
 # Social Media website
 
-## IMPORTANT NOTICE: This project is currently being refactored
+## The project has been refactored recently. I'm working on fixing small bugs
 
 ### Log in , sign up , upload posts, comment.
 
