@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import Avatar from "@material-ui/core/Avatar";
+import { useNavigate } from 'react-router-dom';
+import Avatar from "@mui/material/Avatar";
 import {db} from "../../firebase";
-import firebase from "firebase";
+import { onSnapshot, query, collection, doc, getDoc, deleteDoc, orderBy, limit} from 'firebase/firestore'
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import { Link } from "react-router-dom";
+import edit from "./edit.svg"
+import trash from "./trash.svg"
 
 function Post({postId, user, username, caption, profilePic, image}) {
-
+  
+  let navigate = useNavigate();
+  const storage = getStorage();
   const [comments, setComments] = useState([]);
-  const [comment, setComment] = useState('');
-
 
   useEffect(() => {
     let unsubscribe;
     if (postId) {
-        unsubscribe = db
-            .collection("posts")
-            .doc(postId)
-            .collection("comments")
-            .orderBy("timestamp", "desc")
-            .onSnapshot((snapshot) => {
+        const q = query(collection(db, `posts/${postId}/comments`), orderBy("timestamp", "desc"), limit(1000));
+        unsubscribe = onSnapshot(q, (snapshot) => {
                 setComments(snapshot.docs.map((doc) => doc.data()));
             });
     }
@@ -28,17 +28,29 @@ function Post({postId, user, username, caption, profilePic, image}) {
     };
   }, [postId])
 
-  const postComment = (event) => {
-    event.preventDefault();
+  const handleDelete = (e) => {
+    try {
+        var respond = prompt("Are you sure (to delete enter yes)?").toLowerCase();
+        if(respond==="yes"){
 
-    db.collection("posts").doc(postId).collection("comments").add({
-        text: comment,
-        username: user.displayName,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-    })
+            const docRef = doc(db, 'posts/' + postId);
+            getDoc(docRef).then(docSnap => {
+              if (docSnap.exists()) {
+                const targetFile = ref(storage, `${docSnap.data().imageUrl}`);
+                deleteObject(targetFile).then(() => {
+                  deleteDoc(doc(db, "posts", postId));
+                }).catch((error) => {
+                  console.warn(error)
+                });
+              }
+            })
 
-    setComment('');
-
+        } else {
+            window.alert("File was NOT deleted")
+        }
+    } catch (error) {
+        window.alert("Operation was cancelled")
+    }
   }
 
   return (
@@ -69,6 +81,24 @@ function Post({postId, user, username, caption, profilePic, image}) {
             ))
             }
             <Link to={`/feed/comments/:${postId}`}><p>See all comments</p></Link>
+        </div>
+        <div className="tools">
+            <button
+                id='edit-btn'
+                type='button'
+                onClick={e => navigate(`/post/:${postId}`)}
+            >
+                <img src={edit} alt="" className="tool-pic" />
+                <p>Edit post</p>
+            </button>
+            <button
+                id='del-btn'
+                type='button'
+                onClick={e => handleDelete(e, postId)}
+            >
+                <img src={trash} alt="" className="tool-pic" />
+                <p>Delete post</p>
+            </button>
         </div>
     </div>
   )
