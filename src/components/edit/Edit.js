@@ -29,18 +29,21 @@ function Edit(targetId) {
 
   return (
     <div className='post-upload'>
-      <form>
+
+      <div className="form">
         {/* USERNAME */}
         <label htmlFor="username">Username</label>
         <input 
+          id="username"
           type="text" 
-          id="username" 
+          placeholder='Change username'
           onChange={event => setUsername(event.target.value)} 
-          placeholder='Change username'   
           value={username}
         />
         <p>Change the name that is displayed on your post</p>
+      </div>
 
+      <div className="form">
         {/* CAPTION */}
         <label htmlFor="caption">Caption</label>
         <input 
@@ -51,11 +54,12 @@ function Edit(targetId) {
           value={caption}
         />
         <p>Change/Add caption</p>
+      </div>
 
+      <div className="form">
         {/* SUBMIT */}
         <button onClick={(event) => handleChanges(event)}>Apply changes</button>
-
-      </form>
+      </div>
   </div>
   )
 }

@@ -1,0 +1,175 @@
+/*
+   IMPORTANT NOTE: EACH ID ELEMENT WITH ANIMATIONS HAS THE SAME ANIMATION NAME, DURATION 
+   AND ITERATION. ALTHOUGH CODE REPEATS ITSELF, IT'S THE ONLY OPTION. IF YOU TRY TO COMBINE 
+   ALL OF THEM IN A SINGLE CLASS, IT WILL CAUSE ERRORS, BECAUSE WHEN ANIMATION DELAY AND 
+   OTHER PROPERTIES USED IN SEPARATE CLASSES(or ids) THEY STOP WORKING
+   (css doesn't support separating animation properties into different classes for some reason)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Germania+One&family=Mochiy+Pop+One&family=Scope+One&display=swap');
+
+:root {
+    --shadow-up-one: 4px 4px 8px;
+    --shadow-down-one: -4px -4px -8px;
+    --shadow-up-two: 8px 8px 16px;
+    --shadow-down-two: -8px -8px -16px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+    top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.info > h1 {
+    font-size: 4vh;
+    font-family: 'Germania One', cursive;
+    margin: 0 auto;
+    animation-name: fade;
+    animation-duration: 5s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+}
+
+.info > h2 {
+    font-size: 3vh;
+    font-family: 'Mochiy Pop One', sans-serif;
+    margin: 0.5vh auto;
+    animation-name: fade;
+    animation-duration: 5s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+}
+
+.info > p {
+    font-size: 3vh;
+    font-family: 'Scope One', serif;
+    margin: 0 auto;
+    animation-name: fade;
+    animation-duration: 5s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+}
+
+.info > h1,
+.info > h2,
+.info > p {
+    color: white;
+}
+
+.info > .footer > .wrapper {
+    display: flex;
+    width: fit-content;
+    flex-direction: row;
+    margin: 1vh auto;
+}
+
+.info > .footer > .wrapper > p {
+    position: relative;
+    color: white;
+    font-size: 2vh;
+    font-family: 'Mochiy Pop One', sans-serif;
+}
+
+.info > .footer > .wrapper > img {
+    width: 3vw;
+    margin: 0 1vw;
+}
+
+@keyframes bright {
+    10% {box-shadow: 0.2vh 0.2vh 5vh 0.5vh rgb(255, 255, 255), 0.1vh 0.1vh 2.5vh 0.3vh rgba(255, 255, 255, 0.766) inset;}
+    20% {box-shadow: none;}
+}
+
+@keyframes fade {
+    0% { text-shadow: 0.8vh 0.8vh 1.7vh rgb(45, 255, 22), -0.8vh -0.8vh 1.7vh rgb(255, 255, 7); }
+    20% { text-shadow: 0.8vh 0.8vh 3.7vh rgb(18, 12, 75), -0.8vh -0.8vh 3.7vh rgb(12, 58, 6); }
+    40% { text-shadow: 0.8vh 0.8vh 1.7vh rgb(87, 255, 221), -0.8vh -0.8vh 1.7vh rgb(255, 148, 253); }
+    60% { text-shadow: 0.8vh 0.8vh 3.7vh rgb(101, 10, 100), -0.8vh -0.8vh 3.7vh rgb(0, 107, 85); }
+    80% { text-shadow: 0.8vh 0.8vh 1.7vh rgb(229, 142, 255), -0.8vh -0.8vh 1.7vh rgb(173, 221, 255); }
+    100% { text-shadow: 0.8vh 0.8vh 3.7vh rgb(11, 20, 82), -0.8vh -0.8vh 3.7vh rgb(89, 1, 80); }
+}
+
+/* TEXT ANIMATIONS NEAR ICONS */
+
+#a {
+    animation-name: shake;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    text-shadow: 0.2vh 0.2vh 1vh rgb(92, 214, 255), -0.2vh -0.2vh 1vh rgb(92, 214, 255);
+}
+
+#b {
+    animation-name: shake;
+    animation-duration: 4s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+    text-shadow: 0.2vh 0.2vh 1vh yellow, -0.2vh -0.2vh 1vh yellow;
+}
+
+#c {
+    animation-name: shake;
+    animation-duration: 4s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    text-shadow: 0.2vh 0.2vh 1vh rgb(39, 136, 255), -0.2vh -0.2vh 1vh rgb(39, 136, 255);
+}
+
+#d {
+    animation-name: shake;
+    animation-duration: 4s;
+    animation-delay: 3s;
+    animation-iteration-count: infinite;
+    text-shadow: 0.2vh 0.2vh 1vh orange, -0.2vh -0.2vh 1vh orange;
+}
+
+/* ICON ANIMATIONS */
+
+#e {
+    animation-name: bright;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+}
+
+#f {
+    animation-name: bright;
+    animation-duration: 3s;
+    animation-delay: 0.5s;
+    animation-iteration-count: infinite;
+}
+
+#g {
+    animation-name: bright;
+    animation-duration: 3s;
+    animation-delay: 1s;
+    animation-iteration-count: infinite;
+}
+
+#h {
+    animation-name: bright;
+    animation-duration: 3s;
+    animation-delay: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+#i {
+    animation-name: bright;
+    animation-duration: 3s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+}
+
+#j {
+    animation-name: bright;
+    animation-duration: 3s;
+    animation-delay: 2.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+    10% {transform: translate(-2vw, 0);}
+    20% {transform: translate(0, 0);}
+}

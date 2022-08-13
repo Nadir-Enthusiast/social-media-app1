@@ -1,19 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Oregano&family=Reggae+One&display=swap');
+
 .post-upload {
     display: flex;
     flex-direction: column;
     position: relative;
     top: 6vh;
     margin: 0 auto;
-    width: 40vw;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, #00354c, #120040, #200029); 
 }
 
-.post-upload > form {
+.post-upload > .form {
+    position: relative;
+    width: 40vw;
+    margin: 2vh auto;
     display: flex;
     flex-direction: column;
 }
 
-.post-upload > form > p {
+.post-upload > .form > label {
+    font-size: 4vh;
+    font-family: 'Oregano', cursive;
+    color: white;
+    margin-bottom: 3vh;
+}
+
+.post-upload > .form > p {
+    color: white;
     margin-bottom: 5vh;
+    font-size: 2vh;
+    font-family: 'Reggae One', cursive;
 }
 
 .img-uploading {

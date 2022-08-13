@@ -1,5 +1,6 @@
 import "./Header.css"
 import React from 'react'
+import { Link } from "react-router-dom"
 
 function Header() {
   return (
@@ -12,8 +13,8 @@ function Header() {
         />
         <h3>Social Media app</h3>
       </div>
-      <a href="/upload">Upload your post</a>
-      <h3>Upload posts without logins!</h3>
+      <a href="/upload">Upload a post</a>
+      <Link to="/"><h3>Home page</h3></Link>
     </div>
   )
 }

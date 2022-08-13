@@ -77,18 +77,22 @@ function PostUploader(user) {
 
   return (
     <div className='post-upload'>
-      <form>
-        {/* USERNAME */}
+
+      {/* USERNAME */}
+      <div className="form">
         <label htmlFor="username">Username</label>
         <input 
-          type="text" 
           id="username" 
+          type="text" 
+          placeholder='CoolUsername'  
           onChange={event => setUsername(event.target.value)} 
-          placeholder='CoolUsername'   
+          value={username}
         />
         <p>Enter the name that will be displayed on your post</p>
+      </div>
 
-        {/* CAPTION */}
+      {/* CAPTION */}
+      <div className="form">
         <label htmlFor="caption">Caption</label>
         <input 
           id='caption'
@@ -98,21 +102,27 @@ function PostUploader(user) {
           value={caption}
         />
         <p>Optional. Caption will be shown under the post</p>
+      </div>
 
-        {/* ACTUAL UPLOAD */}
+      {/* ACTUAL UPLOAD */}
+      <div className="form">
         <label htmlFor='picUpload'>Choose a picture to upload</label>
         <progress className='img-uploading' value={progress} max={100} />
         <input 
           id='picUpload' 
           type='file' 
           onChange={handleImage} 
+          style={{color: "white"}}
         />
+        {/* white color is for "file selected" paragraph */}
         <p>Required. To upload a post you must choose a picture</p>
+      </div>
 
-        {/* SUBMIT */}
+      {/* SUBMIT */}
+      <div className="form">
         <button onClick={(event) => handleUpload(event)}>Upload</button>
+      </div>
 
-      </form>
     </div>
   )
 }
