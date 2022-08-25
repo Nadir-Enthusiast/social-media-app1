@@ -1,7 +1,5 @@
 # Social Media website
 
-## The project has been refactored recently. I'm working on fixing small bugs
-
 ### Log in , sign up , upload posts, comment.
 
 ## Available Scripts
